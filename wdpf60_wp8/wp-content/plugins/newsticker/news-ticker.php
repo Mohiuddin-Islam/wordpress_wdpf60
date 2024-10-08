@@ -11,19 +11,17 @@ Author URI: http://abdullah.wdpf60.com/
 
 function news_ticker_setup(){
 
-    echo '<div class="acme-news-ticker">
+		if (have_posts()) {
+		while (have_posts()) {
+		the_post();
+	?>
+
+    <div class="acme-news-ticker">
     <div class="acme-news-ticker-label">Horizontal News</div>
 
     <div class="acme-news-ticker-box">
         <ul class="my-news-ticker">
-            <li><a href="#">Test 1</a></li>
-            <li><a href="#">Test 2</a></li>
-            <li><a href="#">Test 3</a></li>
-            <li><a href="#">Test 4</a></li>
-            <li><a href="#">Test 5</a></li>
-            <li><a href="#">Test 6</a></li>
-            <li><a href="#">Test 7</a></li>
-            <li><a href="#">Test 8</a></li>
+            <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
         </ul>
 
     </div>
@@ -32,7 +30,10 @@ function news_ticker_setup(){
         <button class="acme-news-ticker-pause"></button>
         <button class="acme-news-ticker-arrow acme-news-ticker-next"></button>
     </div>
-</div>';
+</div>
+<?php 
+    }}
+
 }
 
 //add_action('do_action', 'news_ticker_setup');
